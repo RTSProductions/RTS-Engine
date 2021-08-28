@@ -1,0 +1,6 @@
+
+.vs/
+bin/
+obj/
+RTS-Engine.xcodeproj
+.DS_Store
