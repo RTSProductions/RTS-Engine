@@ -24,7 +24,7 @@ int main(void)
         return -1;
 
     /* Create a windowed mode window and its OpenGL context */
-    window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "RTS-Engine", NULL, NULL);
+    window = glfwCreateWindow(640, SCREEN_HEIGHT, "RTS-Engine", NULL, NULL);
     if (!window)
     {
         glfwTerminate();
@@ -41,23 +41,15 @@ int main(void)
         300, 50, 0.0, /* Bottom left corner */
         50, 50, 0.0 /* Bottom right corner */
     };
-
-    GLfloat actualVerts[12];
-    glViewport(0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT);
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    glOrtho(0, SCREEN_WIDTH, 0, SCREEN_HEIGHT, 0, 1);
-    glMatrixMode(GL_MODELVIEW);
     
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))
     {
-        glGetFloatv(GL_VIEWPORT, actualVerts);
-        printf("==================\n");
-        for(int i = 0; i < 4; ++i)
-        {
-            printf("%d = %f, ", i, actualVerts[i]);
-        }
+        glViewport(0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT);
+        glMatrixMode(GL_PROJECTION);
+        glLoadIdentity();
+        glOrtho(0, SCREEN_WIDTH, 0, SCREEN_HEIGHT, 0, 1);
+        glMatrixMode(GL_MODELVIEW);
 
         /* Render here */
         glClear(GL_COLOR_BUFFER_BIT);
