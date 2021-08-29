@@ -9,62 +9,91 @@
 #endif
 #include <GLFW/glfw3.h>
 #include <stdio.h>
+#include "shapes.h"
+#include "vector.h"
+#include <iostream>
+#include <cstdlib>
 
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 480
 
-int main(void)
+int main( void )
 {
-    GLFWwindow* window;
+    GLFWwindow *window;
     
-    
-
-    /* Initialize the library */
+    // Initialize the library
     if (!glfwInit())
+    {
         return -1;
+    }
+    
+    // Create a windowed mode window and its OpenGL context
+    window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "RTS-Engine", NULL, NULL);
 
-    /* Create a windowed mode window and its OpenGL context */
-    window = glfwCreateWindow(640, SCREEN_HEIGHT, "RTS-Engine", NULL, NULL);
+    
+    
+    int screenWidth, screenHeight;
+    glfwGetFramebufferSize(window, &screenWidth, &screenHeight);
+
     if (!window)
     {
         glfwTerminate();
         return -1;
     }
-
-    /* Make the window's context current */
+    
+    // Make the window's context current
     glfwMakeContextCurrent(window);
+    
+    glViewport( 0.0f, 0.0f, screenWidth, screenHeight);
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    glOrtho(0, SCREEN_WIDTH, 0, SCREEN_HEIGHT, 0, 600);
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    
+    GLfloat halfScreenWidth = SCREEN_WIDTH / 2;
+    GLfloat halfScreenHeight = SCREEN_HEIGHT / 2;
+    
+    GLfloat halfSideLength = 200;
     
     GLfloat vertices[] =
     {
-        50, 300, 0.0, /* Top left corner */
-        300, 300, 0.0, /* Top right corner */
-        300, 50, 0.0, /* Bottom left corner */
-        50, 50, 0.0 /* Bottom right corner */
+        halfScreenWidth, halfScreenHeight + halfSideLength, 0.0, // top center vertex
+        halfScreenWidth - halfSideLength, halfScreenHeight - halfSideLength, 0.0, // bottom left corner
+        halfScreenWidth + halfSideLength, halfScreenHeight - halfSideLength, 0.0 // bottom right corner
     };
     
-    /* Loop until the user closes the window */
+    GLfloat colour[] =
+    {
+        255, 0, 0,
+        0, 255, 0,
+        0, 0, 255
+    };
+    
+    // Loop until the user closes the window
     while (!glfwWindowShouldClose(window))
     {
-        glViewport(0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT);
-        glMatrixMode(GL_PROJECTION);
-        glLoadIdentity();
-        glOrtho(0, SCREEN_WIDTH, 0, SCREEN_HEIGHT, 0, 1);
-        glMatrixMode(GL_MODELVIEW);
-
-        /* Render here */
         glClear(GL_COLOR_BUFFER_BIT);
+        
+        // Render OpenGL here
         glEnableClientState(GL_VERTEX_ARRAY);
+        glEnableClientState(GL_COLOR_ARRAY);
         glVertexPointer(3, GL_FLOAT, 0, vertices);
-        glDrawArrays(GL_QUADS, 0, 4);
+        glColorPointer(3, GL_FLOAT, 0, colour);
+        glDrawArrays(GL_TRIANGLES, 0, 3);
+        glDisableClientState(GL_COLOR_ARRAY);
         glDisableClientState(GL_VERTEX_ARRAY);
         
-        /* Swap front and back buffers */
-        glfwSwapBuffers(window);
 
-        /* Poll for and process events */
+        
+        // Swap front and back buffers
+        glfwSwapBuffers(window);
+        
+        // Poll for and process events
         glfwPollEvents();
     }
-
+    
     glfwTerminate();
+    
     return 0;
 }
