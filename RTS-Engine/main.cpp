@@ -9,7 +9,6 @@
 #endif
 #include <GLFW/glfw3.h>
 #include <stdio.h>
-#include "shapes.h"
 #include "vector.h"
 #include <iostream>
 #include <cstdlib>
