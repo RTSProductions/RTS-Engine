@@ -2,7 +2,7 @@
 
 ![](https://shields-staging.herokuapp.com/github/downloads/RTSProductions/RTS-Engine/total)
 ![](https://shields-staging.herokuapp.com/github/directory-file-count/RTSProductions/RTS-Engine)
-![](https://img.shields.io/github/repo-size/RTSProductions/RTS-Engine?style=for-the-badge)
+![](https://img.shields.io/github/repo-size/RTSProductions/RTS-Engine)
 ![](https://img.shields.io/tokei/lines/github/RTSProductions/RTS-Engine)
 
 
