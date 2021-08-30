@@ -9,6 +9,7 @@
 #define shapes_h
 
 #include "vector.h"
+#include <math.h>
 
 void DrawRectangle(Vector2 originPoint, Vector2 scale, GLfloat color[])
 {
@@ -59,6 +60,46 @@ void DrawTriangle(Vector2 originPoint, Vector2 scale, GLfloat color[])
     glDisableClientState(GL_VERTEX_ARRAY);
 };
 
+void DrawCircle(Vector2 originPoint, Vector2 scale, int numberOfSides, GLfloat color[])
+{
+    int numberOfVertices = numberOfSides + 2;
+    
+    float x = originPoint.x;
+    float y = originPoint.y;
+        
+    GLfloat twicePi = 2.0f * M_PI;
+    
+    GLfloat circleVerticesX[numberOfVertices];
+    GLfloat circleVerticesY[numberOfVertices];
+    GLfloat circleVerticesZ[numberOfVertices];
+    
+    circleVerticesX[0] = x;
+    circleVerticesY[0] = y;
+    circleVerticesZ[0] = 0;
+        
+    for (int i = 1; i < numberOfVertices; i++)
+    {
+        circleVerticesX[i] = x + ((scale.x / 2) * cos(i * twicePi / numberOfSides));
+        circleVerticesY[i] = y + ((scale.y / 2) * sin(i * twicePi / numberOfSides));
+        circleVerticesZ[i] = 0;
+    }
+    
+    GLfloat allCircleVertices[( numberOfVertices ) * 3];
+    
+    for ( int i = 0; i < numberOfVertices; i++ )
+    {
+        allCircleVertices[i * 3] = circleVerticesX[i];
+        allCircleVertices[( i * 3 ) + 1] = circleVerticesY[i];
+        allCircleVertices[( i * 3 ) + 2] = circleVerticesZ[i];
+    }
+    
+    glEnableClientState( GL_VERTEX_ARRAY );
+    glVertexPointer( 3, GL_FLOAT, 0, allCircleVertices );
+    glDrawArrays( GL_TRIANGLE_FAN, 0, numberOfVertices);
+    glDisableClientState( GL_VERTEX_ARRAY );
+
+};
+
 enum Shape
 {
     Rectangle,
@@ -87,6 +128,10 @@ public:
         {
             color = new GLfloat[9];
         }
+        if (shapeType == Circle)
+        {
+            color = new GLfloat[362];
+        }
     }
     ~Shape2D()
     {
@@ -105,6 +150,10 @@ public:
         if (shapeType == Triangle)
         {
             DrawTriangle(OriginPoint, Scale, color);
+        }
+        if (shapeType == Circle)
+        {
+            DrawCircle(OriginPoint, Scale, 360, color);
         }
     }
     

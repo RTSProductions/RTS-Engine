@@ -13,10 +13,13 @@ RTS-Engine is a game engine made in C++
 
 # Information About This Project
 This project uses glfw and OpenGL for its graphics
+
 It was founded by Regin Hurley David aka [RTSProductions](https://github.com/RTSProductions)
 
 ## Realses
 Currently there aren't any realses for RTS-Engine, but realese are planed and in the works!
 
 ## Compatibility
-RTS-Engine was made in Mac OS and may currently only support unix. However, testing has not been done on Windows/Linux systems so results may vary.
+RTS-Engine was made in Mac OS and may currently only support unix
+
+However, testing has not been done on Windows/Linux systems so results may vary

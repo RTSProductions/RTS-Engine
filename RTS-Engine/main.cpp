@@ -69,11 +69,15 @@ int main(void)
         0, 0, 255
     };
     
-    Shape2D shape(100, 100, 100, 100, Rectangle);
-    GLFloatArrayToRGBColor(shape.color, 0, 255, 0, 4);
+    Shape2D square(100, 100, 100, 100, Rectangle);
+    GLFloatArrayToRGBColor(square.color, 0, 255, 0, 4);
     
-    Shape2D tri(100, 100, 100, 200, Triangle);
+    Shape2D tri(100, 100, 100, 250, Triangle);
     GLFloatArrayToRGBColor(tri.color, 255, 0, 0, 4);
+    
+    Shape2D circle(100, 100, 100, 360, Circle);
+    GLFloatArrayToRGBColor(circle.color, 0, 0, 255, 4);
+    
     
     glClearColor(0, 0, 0, 1);
 
@@ -91,13 +95,17 @@ int main(void)
         glDisableClientState(GL_COLOR_ARRAY);
         glDisableClientState(GL_VERTEX_ARRAY);
         
-        shape.OriginPoint.x += 1;
+        square.OriginPoint.x += 1;
         
-        shape.Render();
+        square.Render();
         
         tri.OriginPoint.x += 1;
         
         tri.Render();
+        
+        circle.OriginPoint.x += 1;
+        
+        circle.Render();
 
         // Swap front and back buffers
         glfwSwapBuffers(window);

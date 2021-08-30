@@ -11,5 +11,6 @@
 #include "colors.h"
 #include "shapes.h"
 #include "vector.h"
+#include <math.h>
 
 #endif /* RTS_EngineHeaders_h */
