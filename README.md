@@ -4,6 +4,8 @@
 ![](https://shields-staging.herokuapp.com/github/directory-file-count/RTSProductions/RTS-Engine)
 ![](https://img.shields.io/github/repo-size/RTSProductions/RTS-Engine)
 ![](https://img.shields.io/tokei/lines/github/RTSProductions/RTS-Engine)
+![](https://img.shields.io/github/contributors/RTSProductions/RTS-Engine)
+![](https://img.shields.io/github/last-commit/RTSProductions/RTS-Engine)
 
 
 RTS-Engine is a game engine made in C++
