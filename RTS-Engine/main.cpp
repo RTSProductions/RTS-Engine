@@ -9,11 +9,9 @@
 #endif
 #include <GLFW/glfw3.h>
 #include <stdio.h>
-#include "vector.h"
 #include <iostream>
-#include "shapes.h"
-#include "colors.h"
 #include <cstdlib>
+#include "Headers/RTS-EngineHeaders.h"
 
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 480
