@@ -5,8 +5,8 @@
 //  Created by Regin Hurley David on 8/29/21.
 //
 
-#ifndef vector2_h
-#define vector2_h
+#ifndef vector_h
+#define vector_h
 
 class Vector2
 {
