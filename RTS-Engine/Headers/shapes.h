@@ -100,61 +100,46 @@ void DrawCircle(Vector2 originPoint, Vector2 scale, int numberOfSides, GLfloat c
 
 };
 
-enum Shape
-{
-    Rectangle,
-    Circle,
-    Triangle
-};
-
 class Shape2D
 {
 public:
-    Vector2 OriginPoint = Vector2(0, 0);
-    Vector2 Scale = Vector2(0, 0);
-    GLfloat* color = nullptr;
-    Shape shapeType;
     
-    Shape2D(float xScale, float yScale, float xPos, float yPos, Shape type)
+    virtual void Render() = 0;
+    
+};
+class Rectangle2D : public Shape2D
+{
+public:
+    Vector2 Position = Vector2(0, 0);
+    Vector2 Scale = Vector2(0, 0);
+    GLfloat color[12];
+    
+    Rectangle2D(float xScale, float yScale, float xPos, float yPos)
     {
         Scale = Vector2(xScale, yScale);
-        OriginPoint = Vector2(xPos, yPos);
-        shapeType = type;
-        if (shapeType == Rectangle)
-        {
-            color = new GLfloat[12];
-        }
-        if (shapeType == Triangle)
-        {
-            color = new GLfloat[9];
-        }
-        if (shapeType == Circle)
-        {
-            color = new GLfloat[362];
-        }
+        Position = Vector2(xPos, yPos);
     }
-    ~Shape2D()
+    void Render() override
     {
-        if (color != nullptr)
-        {
-            delete [] color;
-        }
+        DrawRectangle(Position, Scale, color);
     }
     
-    void Render()
+};
+class Triangle2D : public Shape2D
+{
+public:
+    Vector2 Position = Vector2(0, 0);
+    Vector2 Scale = Vector2(0, 0);
+    GLfloat color[9];
+    
+    Triangle2D(float xScale, float yScale, float xPos, float yPos)
     {
-        if (shapeType == Rectangle)
-        {
-            DrawRectangle(OriginPoint, Scale, color);
-        }
-        if (shapeType == Triangle)
-        {
-            DrawTriangle(OriginPoint, Scale, color);
-        }
-        if (shapeType == Circle)
-        {
-            DrawCircle(OriginPoint, Scale, 360, color);
-        }
+        Scale = Vector2(xScale, yScale);
+        Position = Vector2(xPos, yPos);
+    }
+    void Render() override
+    {
+        DrawTriangle(Position, Scale, color);
     }
     
 };
