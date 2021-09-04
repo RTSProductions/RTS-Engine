@@ -8,6 +8,7 @@
 #ifndef vector_h
 #define vector_h
 
+/* 2D position in world */
 class Vector2
 {
 public:
@@ -20,6 +21,7 @@ public:
     }
 };
 
+/* 3D position in world space */
 class Vector3
 {
 public:

@@ -11,6 +11,7 @@
 #include "vector.h"
 #include <math.h>
 
+/* Draw a 2D rectangle */
 void DrawRectangle(Vector2 originPoint, Vector2 scale, GLfloat color[])
 {
     float xPos = originPoint.x;
@@ -36,6 +37,7 @@ void DrawRectangle(Vector2 originPoint, Vector2 scale, GLfloat color[])
     glDisableClientState(GL_VERTEX_ARRAY);
 };
 
+/* Draw a 2d triangle */
 void DrawTriangle(Vector2 originPoint, Vector2 scale, GLfloat color[])
 {
     float xPos = originPoint.x;
@@ -60,6 +62,7 @@ void DrawTriangle(Vector2 originPoint, Vector2 scale, GLfloat color[])
     glDisableClientState(GL_VERTEX_ARRAY);
 };
 
+/* raw a 2D circle */
 void DrawCircle(Vector2 originPoint, Vector2 scale, int numberOfSides, GLfloat color[])
 {
     int numberOfVertices = numberOfSides + 2;
@@ -100,6 +103,7 @@ void DrawCircle(Vector2 originPoint, Vector2 scale, int numberOfSides, GLfloat c
 
 };
 
+/* 2D shape class */
 class Shape2D
 {
 public:
@@ -107,6 +111,7 @@ public:
     virtual void Render() = 0;
     
 };
+/* 2D rectangle class */
 class Rectangle2D : public Shape2D
 {
 public:
@@ -125,6 +130,7 @@ public:
     }
     
 };
+/* 2D triangle class */
 class Triangle2D : public Shape2D
 {
 public:

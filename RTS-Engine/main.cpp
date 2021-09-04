@@ -20,13 +20,13 @@ int main(void)
 {
     GLFWwindow *window;
 
-    // Initialize the library
+    /* Initialize the library */
     if (!glfwInit())
     {
         return -1;
     }
 
-    // Create a windowed mode window and its OpenGL context
+    /* Create a windowed mode window and its OpenGL context */
     window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "RTS-Engine", NULL, NULL);
 
 
@@ -40,7 +40,7 @@ int main(void)
         return -1;
     }
 
-    // Make the window's context current
+    /* Make the window's context current */
     glfwMakeContextCurrent(window);
 
     glViewport( 0.0f, 0.0f, screenWidth, screenHeight);
@@ -51,23 +51,22 @@ int main(void)
     glLoadIdentity();
     
     glClearColor(0, 0, 0, 1);
-    
-    Rectangle2D square(100, 100, 100, 100);
-    GLFloatArrayToRGBColor(square.color, 0, 0, 255, 4);
 
-    // Loop until the user closes the window
+    unsigned int buffer;
+    glGenBuffers(1, &buffer);
+    
+    /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))
     {
         glClear(GL_COLOR_BUFFER_BIT);
 
-        // Render OpenGL here
+        /* Render OpenGL here */
         
-        square.Render();
         
-        // Swap front and back buffers
+        /* Swap front and back buffers */
         glfwSwapBuffers(window);
 
-        // Poll for and process events
+        /* Poll for and process events */
         glfwPollEvents();
     }
 
